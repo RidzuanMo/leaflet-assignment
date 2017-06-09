@@ -1,0 +1,27 @@
+---
+title: "Week 2 Assignment - Leaflet"
+author: "Ridzuan Mohamad"
+date: "6/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##R Markdown and Leaflet
+
+https://www.citypopulation.de/php/malaysia-admin.php?adm1id=12
+
+```{r}
+library(leaflet)
+library(htmltools)
+
+df <- read.csv2('dataset.csv', sep=',' , header = TRUE, as.is = TRUE, dec=".")
+head(df)
+my_map <- leaflet(data=df) %>%
+    addTiles() %>%
+    addMarkers(label=~place, popup = ~htmlEscape(remark))
+
+my_map
+```
