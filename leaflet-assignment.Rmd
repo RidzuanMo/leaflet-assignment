@@ -9,17 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##R Markdown and Leaflet
+##Malacca Historical Places
 
-https://www.citypopulation.de/php/malaysia-admin.php?adm1id=12
-
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(leaflet)
 library(htmltools)
 
 df <- read.csv2('dataset.csv', sep=',' , header = TRUE, as.is = TRUE, dec=".")
-head(df)
-my_map <- leaflet(data=df) %>%
+
+my_map <- leaflet(data=df, options = leafletOptions(minZoom = 5, maxZoom = 18)) %>%
     addTiles() %>%
     addMarkers(label=~place, popup = ~htmlEscape(remark))
 

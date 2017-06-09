@@ -132,33 +132,20 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-markdown-and-leaflet" class="section level2">
-<h2>R Markdown and Leaflet</h2>
-<p><a href="https://www.citypopulation.de/php/malaysia-admin.php?adm1id=12" class="uri">https://www.citypopulation.de/php/malaysia-admin.php?adm1id=12</a></p>
-<pre class="r"><code>library(leaflet)</code></pre>
-<pre><code>## Warning: package 'leaflet' was built under R version 3.3.2</code></pre>
-<pre class="r"><code>library(htmltools)
+<div id="malacca-historical-places" class="section level2">
+<h2>Malacca Historical Places</h2>
+<pre class="r"><code>library(leaflet)
+library(htmltools)
 
-df &lt;- read.csv2('dataset.csv', sep=',' , header = TRUE, as.is = TRUE, dec=&quot;.&quot;)</code></pre>
-<pre><code>## Warning in read.table(file = file, header = header, sep = sep, quote =
-## quote, : incomplete final line found by readTableHeader on 'dataset.csv'</code></pre>
-<pre class="r"><code>head(df)</code></pre>
-<pre><code>##               place
-## 1 St. Paul's Church
-## 2          A Famosa
-##                                                                                                                                                                                                          remark
-## 1 The St Paul’s Hill is surrounded by a lot of historical places and restaurants. You have to climb up the hill to see the St Paul’s Church which is one of the great historical places of the city and country
-## 2                                                                                                                                                                                                          1511
-##        lat      lng
-## 1 2.192546 102.2496
-## 2 2.191799 102.2504</code></pre>
-<pre class="r"><code>my_map &lt;- leaflet(data=df) %&gt;%
+df &lt;- read.csv2('dataset.csv', sep=',' , header = TRUE, as.is = TRUE, dec=&quot;.&quot;)
+
+my_map &lt;- leaflet(data=df, options = leafletOptions(minZoom = 5, maxZoom = 18)) %&gt;%
     addTiles() %&gt;%
-    addMarkers(label=~place, popup = ~htmlEscape(remark))</code></pre>
-<pre><code>## Assuming 'lng' and 'lat' are longitude and latitude, respectively</code></pre>
-<pre class="r"><code>my_map</code></pre>
-<div id="htmlwidget-48e2ddf13f84ed21e1b6" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-48e2ddf13f84ed21e1b6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap\u003c/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA\u003c/a>"}]},{"method":"addMarkers","args":[[2.192546,2.191799],[102.249574,102.250368],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["The St Paul’s Hill is surrounded by a lot of historical places and restaurants. You have to climb up the hill to see the St Paul’s Church which is one of the great historical places of the city and country","1511"],null,null,null,["St. Paul's Church","A Famosa"],null,null]}],"limits":{"lat":[2.191799,2.192546],"lng":[102.249574,102.250368]}},"evals":[],"jsHooks":[]}</script>
+    addMarkers(label=~place, popup = ~htmlEscape(remark))
+
+my_map</code></pre>
+<div id="htmlwidget-bf0dd42626cbd3907709" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bf0dd42626cbd3907709">{"x":{"options":{"minZoom":5,"maxZoom":18,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap\u003c/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA\u003c/a>"}]},{"method":"addMarkers","args":[[2.192546,2.191799,2.194448],[102.249574,102.250368,102.249237],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["St. Paul's Church is a historic church building in Melaka, Malaysia that was originally built in 1521, making it the oldest church building in Malaysia and Southeast Asia.","A Famosa was a Portuguese fortress located in Malacca, Malaysia. It is among the oldest surviving European architectural remains in south east Asia.Year built: 1511","The Dutch Square, also called Red Squared because all the surrounding building painted red, next to the Melaka river is a good starting point for visiting the old part of the town.Year built: 1650"],null,null,null,["St. Paul's Church","A Famosa","Dutch Square"],null,null]}],"limits":{"lat":[2.191799,2.194448],"lng":[102.249237,102.250368]}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 
